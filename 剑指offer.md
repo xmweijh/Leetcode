@@ -62,3 +62,140 @@ var findNumberIn2DArray = function(matrix, target) {
 };
 ```
 
+这道题真的巧妙啊！
+
+#### [剑指 Offer 07. 重建二叉树 - 力扣（Leetcode）](https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/?favorite=xb9nqhhg)
+
+根据前序遍历和中序遍历重建二叉树
+
+比如preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+
+前序确定中间结点3, 中序确定左子树9，右子树 3，15，20，7，并统计子树长度
+
+就可以在前序中获得响应左右子树的前序遍历
+
+然后继续9只有一个节点
+
+右子树20为根节点，依次
+
+```js
+var buildTree = function(preorder, inorder) {
+    if (!preorder.length || !inorder.length) {
+        return null;
+    }
+
+    const root = new TreeNode(preorder[0]);
+    const index = inorder.indexOf(preorder[0]);
+
+    root.left = buildTree(preorder.slice(1, index + 1), inorder.slice(0, index));
+    root.right = buildTree(preorder.slice(index + 1), inorder.slice(index + 1));
+
+    return root;
+};
+```
+
+#### [剑指 Offer 10- II. 青蛙跳台阶问题 - 力扣（Leetcode）](https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/?favorite=xb9nqhhg)
+
+注意处理数据溢出
+
+```js
+var numWays = function(n) {
+    let dp1 = 1, dp2=1;
+    for(let i = 2; i<=n; i++) {
+        [dp1, dp2] = [dp2, (dp1 + dp2)%(Math.pow(10,9)+7)]
+    }
+    return dp2
+};
+```
+
+#### [剑指 Offer 11. 旋转数组的最小数字 - 力扣（Leetcode）](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/?favorite=xb9nqhhg)
+
+最简单
+
+```js
+var minArray = function(numbers) {
+    return Math.min(...numbers)
+};
+```
+
+或者暴力for直接找最小值，
+
+优化，若在升序则继续 一点下一个小于上一个则最小
+
+但如果全程有序则会多判断很多。
+
+二分法：
+
+比如[3,4,5,1,2]
+
+left为0， right为n-1
+
+翻转后的数组分界点右边的元素应该比左边小。
+
+中间元素若比右边大，则翻转点在中间元素与右指针之间
+
+否则在左边
+
+更新left right
+
+当 nums[m]=nums[j] 时： 无法判断 m在哪个排序数组中，即无法判断旋转点 x 在 \[i,m]还是 \[m+1,j] 区间中。解决方案： 执行right-- 缩小判断范围，分析见下文。
+
+```js
+var minArray = function(numbers) {
+    const n = numbers.length;
+    let left = 0, right = n-1;
+
+    while(left < right) {
+        let mid = (left+right) >> 1;
+        if(numbers[mid] > numbers[right]) {
+            left = mid + 1
+        }else if(numbers[mid] < numbers[right]){
+            right = mid
+        } else {
+            right--
+        }
+    }
+
+    return numbers[left]
+};
+```
+
+#### [剑指 Offer 29. 顺时针打印矩阵 - 力扣（Leetcode）](https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/description/)
+
+模拟，四个边界
+
+```js
+var spiralOrder = function(matrix) {
+    let m = matrix.length, n = 0
+    if(matrix.length>0) {
+        n = matrix[0].length;
+    }
+    let res = []
+    let top =0, bottom = m-1, left = 0, right = n-1;
+    while(true) {
+        for(let i = left; i<=right; i++) {
+            res.push(matrix[top][i]);
+        }
+        top++;
+        if(top>bottom) break;
+        for(let i = top; i<= bottom; i++) {
+            res.push(matrix[i][right]);
+        }
+        right--;
+        if(right<left) break;
+        for(let i = right; i>=left; i--) {
+            res.push(matrix[bottom][i])
+        }
+        bottom--;
+        if(top>bottom) break;
+        for(let i = bottom; i>=top; i--) {
+            res.push(matrix[i][left])
+        }
+        left++;
+         if(right<left) break;
+    }
+    return res
+};
+```
+
+比较值得注意的边界条件
