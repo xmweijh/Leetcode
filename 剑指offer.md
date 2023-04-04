@@ -246,3 +246,40 @@ var exist = function(board, word) {
 };
 ```
 
+#### [剑指 Offer 14- I. 剪绳子 - 力扣（Leetcode）](https://leetcode.cn/problems/jian-sheng-zi-lcof/?favorite=xb9nqhhg)
+
+动态规划 
+
+```js
+var cuttingRope = function(n) {
+    const dp = new Array(n+1).fill(0);
+    dp[2] = 1;
+    for(let i = 3; i <= n; i++) {
+        for(let j = 1; j <= i/2; j++) {
+            dp[i] = Math.max(dp[i], dp[i-j]*j, (i-j)*j)
+        }
+    }
+    return dp[n]
+};
+```
+
+#### [剑指 Offer 14- II. 剪绳子 II - 力扣（Leetcode）](https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/solutions/)
+
+会有数据溢出问题
+
+```js
+var cuttingRope = function(n) {
+    if(n===2) return 1;
+    if(n === 3) return 2;
+    if(n === 4) return 4;
+
+    let res = 1
+    while(n > 4) {
+        res = (res*3)%(1e9+7)
+        n -= 3
+    }
+    return (res*n)%(1e9+7)
+};
+```
+
+这里贪心  尽量为3  但前几项需要注意  因为必须要切分
