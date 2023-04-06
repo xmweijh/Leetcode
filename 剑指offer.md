@@ -283,3 +283,7 @@ var cuttingRope = function(n) {
 ```
 
 这里贪心  尽量为3  但前几项需要注意  因为必须要切分
+
+#### [剑指 Offer 20. 表示数值的字符串 - 力扣（Leetcode）](https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/?favorite=xb9nqhhg)
+
+状态转移自动机
