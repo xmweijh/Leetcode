@@ -287,3 +287,26 @@ var cuttingRope = function(n) {
 #### [剑指 Offer 20. 表示数值的字符串 - 力扣（Leetcode）](https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/?favorite=xb9nqhhg)
 
 状态转移自动机
+
+#### [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面 - 力扣（Leetcode）](https://leetcode.cn/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/?favorite=xb9nqhhg)
+
+```js
+var exchange = function(nums) {
+    let len = nums.length
+    let left=0, right = len-1;
+
+    while(left < right) {
+        while(nums[left] % 2 !== 0 && left<right) {
+            left++;
+        } 
+        while(nums[right]%2 === 0 && left<right) {
+            right--;
+        }
+        [nums[left], nums[right]] = [nums[right], nums[left]]
+        left++;
+        right--;
+    }
+    return nums
+};
+```
+
