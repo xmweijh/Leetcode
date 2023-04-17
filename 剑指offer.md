@@ -309,3 +309,23 @@ var exchange = function(nums) {
     return nums
 };
 ```
+
+#### [剑指 Offer 52. 两个链表的第一个公共节点 - 力扣（Leetcode）](https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/description/?envType=study-plan-v2&id=coding-interviews)
+
+k神的解太妙了
+
+[剑指 Offer 52. 两个链表的第一个公共节点 - 力扣（Leetcode）](https://leetcode.cn/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/solutions/627084/jian-zhi-offer-52-liang-ge-lian-biao-de-gcruu/)
+
+```js
+ // 两者一起走 遍历到最后一定会走到相同的点  否则就是null
+ var getIntersectionNode = function(headA, headB) {
+    let A = headA;
+    let B = headB;
+    while (A !== B) {
+      A = A ? A.next : headB;
+      B = B ? B.next : headA;
+    }
+    return A;
+ };
+```
+

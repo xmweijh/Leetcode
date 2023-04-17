@@ -6,7 +6,7 @@
  * @return {number}
  */
 var countDaysTogether = function(arriveAlice, leaveAlice, arriveBob, leaveBob) {
-    // 记录每个月第一天是一年的多少天 因为同一个自然年，可以直接这样处理
+    // 记录每个月第一天是一年的多少天 因为同一个自然年，可以直接这样处理  第一个代表2月
     const days = [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
     const s = arriveAlice <= arriveBob ? arriveBob : arriveAlice, e = leaveAlice <= leaveBob ? leaveAlice : leaveBob;
     if (e < s) return 0;
