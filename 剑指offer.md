@@ -329,3 +329,59 @@ k神的解太妙了
  };
 ```
 
+#### [剑指 Offer 31. 栈的压入、弹出序列 - 力扣（Leetcode）](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+对比压入和弹出顺序
+
+两个指针i, j分别指向它们  模拟入栈
+
+当vlue i != j   判断是否与栈顶元素相等  相等出栈 j++  否则  i++  并入栈
+
+value i = j  j++ 
+
+```js
+var validateStackSequences = function(pushed, popped) {
+    let i=0, j =0, n = pushed.length;
+    let stack = []
+    while ((i<n || stack.length) && j < n) {
+        if (i<n && pushed[i] === popped[j]) {
+            i++;
+            j++;
+        } else {
+            if(stack && stack[stack.length - 1] === popped[j]) {
+                j++;
+                stack.pop();
+            } else {
+                if(i<n) {
+                    stack.push(pushed[i])
+                    i++;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+    return j === n
+};
+```
+
+只用一个栈就可以判断，简化下上面代码                                                                        
+
+模拟入栈，然后每次与出栈表对比 看是否相同，相同则出栈，最后判断栈能否清空
+
+```js
+var validateStackSequences = function (pushed, popped) {
+    let stack = [];
+    let i = 0;
+    for (let num of pushed) {
+        stack.push(num); // num 入栈
+        while (stack.length && stack[stack.length - 1] === popped[i]) {
+            // 循环判断与出栈
+            stack.pop();
+            i += 1;
+        }
+    }
+    return !stack.length;
+};
+```
+
