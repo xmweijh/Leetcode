@@ -385,3 +385,23 @@ var validateStackSequences = function (pushed, popped) {
 };
 ```
 
+#### [剑指 Offer 53 - II. 0～n-1中缺失的数字 - 力扣（Leetcode）](https://leetcode.cn/problems/que-shi-de-shu-zi-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+```js
+var missingNumber = function(nums) {
+    // 二分法  mid看是大于一半还是小于一半  说明左边缺少 还是右边缺少
+    
+    let n = nums.length;
+    let l = 0, r = n-1;
+    while (l <= r) {
+        let mid = l + Math.ceil((r-l)/2);
+        if (nums[mid] > mid) {
+            r = mid-1
+        } else {
+            l = mid+1
+        }
+    } 
+    return l
+};
+```
+
