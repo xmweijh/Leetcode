@@ -405,3 +405,20 @@ var missingNumber = function(nums) {
 };
 ```
 
+#### [剑指 Offer 50. 第一个只出现一次的字符 - 力扣（Leetcode）](https://leetcode.cn/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+hash?
+
+```js
+var firstUniqChar = function(s) {
+    let map = new Map()
+    for (let item of s) {
+        map.set(item, map.get(item)+1 || 1)
+    }
+    for(let [key, value] of map.entries()) {
+        if(value === 1) return key
+    }
+    return ' '
+};
+```
+
