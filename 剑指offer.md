@@ -422,3 +422,23 @@ var firstUniqChar = function(s) {
 };
 ```
 
+#### [剑指 Offer 32 - I. 从上到下打印二叉树 - 力扣（Leetcode）](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+层序遍历，队列模拟
+
+```js
+var levelOrder = function(root) {
+    if(!root) return [];
+    const quene = [root];
+    const result = [];
+    while (quene.length) {
+        let tmp = quene.shift();
+        result.push(tmp.val);
+
+        tmp.left && quene.push(tmp.left);
+        tmp.right && quene.push(tmp.right);
+    }
+    return result;
+};  
+```
+
