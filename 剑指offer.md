@@ -500,3 +500,23 @@ var levelOrder = function(root) {
 };
 ```
 
+#### [剑指 Offer 26. 树的子结构 - 力扣（Leetcode）](https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+```js
+var isSubStructure = function (A, B) {
+    if (!B) return false;
+    function isSub(a, b) {
+        if (b == null) return true;
+        if (a == null) return false;
+        if (a.val === b.val) {
+            if(isSub(a.left, b.left) && isSub(a.right, b.right))
+                return true;
+        } 
+        return isSub(a.left, B) || isSub(a.right, B);
+    }
+
+    return isSub(A, B)
+};
+```
+
+有空看下其它解法

@@ -18,17 +18,17 @@ var levelOrder = function(root) {
         const len = queen.length
         let tmp = []
         for(let i = 0; i<len; i++) {
-            let node = queen.shift()
-            tmp.push(node.val)
-            node.left && queen.push(node.left)
-            node.right && queen.push(node.right)
-        }
-        if(deep %2) {
-            res.push(tmp)
+        let node = queen.shift()
+        node.left && queen.push(node.left)
+        node.right && queen.push(node.right)
+        if(deep %2 === 0) {
+            tmp.unshift(node.val)
         } else {
-            res.push(tmp.reverse())
+            tmp.push(node.val)
+        }
         }
         deep++
+        res.push(tmp)
     }
     return res
 };
