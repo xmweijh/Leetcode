@@ -520,3 +520,21 @@ var isSubStructure = function (A, B) {
 ```
 
 有空看下其它解法
+
+#### [剑指 Offer 13. 机器人的运动范围 - 力扣（Leetcode）](https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/?envType=study-plan-v2&id=coding-interviews)
+
+![image-20230516085002258](剑指offer.assets/image-20230516085002258.png)
+
+```js
+function movingCount(m, n, k) {
+    function dfs(i, j, si, sj) {
+        if (i >= m || j >= n || k < si + sj || visited.has(`${i},${j}`)) return 0;
+        visited.add(`${i},${j}`);
+        return 1 + dfs(i + 1, j, (i + 1) % 10 ? si + 1 : si - 8, sj) + dfs(i, j + 1, si, (j + 1) % 10 ? sj + 1 : sj - 8);
+    }
+
+    let visited = new Set();
+    return dfs(0, 0, 0, 0);
+}
+```
+
