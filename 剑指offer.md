@@ -538,3 +538,32 @@ function movingCount(m, n, k) {
 }
 ```
 
+#### [剑指 Offer 34. 二叉树中和为某一值的路径 - 力扣（Leetcode）](https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/?envType=study-plan-v2&envId=coding-interviews)
+
+回溯
+
+```js
+var pathSum = function(root, target) {
+    const result = [];
+    const path = [];
+
+    function backTrack(root, target) {
+        if(!root) {
+            return
+        }
+
+        target -= root.val
+        path.push(root.val)
+        if(target === 0 && !root.left && !root.right) {
+            result.push([...path])
+        }
+        backTrack(root.left, target)
+        backTrack(root.right, target)
+        path.pop()
+    }
+
+    backTrack(root, target);
+    return result;
+};
+```
+
