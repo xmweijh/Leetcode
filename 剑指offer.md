@@ -567,3 +567,34 @@ var pathSum = function(root, target) {
 };
 ```
 
+#### [剑指 Offer 36. 二叉搜索树与双向链表 - 力扣（Leetcode）](https://leetcode.cn/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/?envType=study-plan-v2&envId=coding-interviews)
+
+中序遍历
+
+```js
+var treeToDoublyList = function(root) {
+    if (!root) return
+    let head = null
+    let pre = null
+
+    function dfs(root) {
+        if(!root) return
+
+        dfs(root.left)
+        if (pre) {
+            pre.right = root
+            root.left = pre
+        } else {
+            head = root
+        }
+        pre = root
+        dfs(root.right)
+    }
+
+    dfs(root)
+    head.left = pre
+    pre.right = head
+    return head
+};
+```
+
