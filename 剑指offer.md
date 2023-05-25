@@ -598,3 +598,25 @@ var treeToDoublyList = function(root) {
 };
 ```
 
+#### [剑指 Offer 54. 二叉搜索树的第k大节点 - 力扣（Leetcode）](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/?envType=study-plan-v2&envId=coding-interviews)
+
+```js
+var kthLargest = function(root, k) {
+    let count = 0;
+    let res = 0;
+    function dfs(root) {
+        if(!root) return
+        dfs(root.right)
+        if(count === k) return
+        count++
+        if(count === k) {
+           res = root.val
+        }
+        dfs(root.left)
+    }
+    dfs(root)
+    return res
+};
+```
+
+提前返回
