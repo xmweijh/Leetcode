@@ -620,3 +620,24 @@ var kthLargest = function(root, k) {
 ```
 
 提前返回
+
+#### [剑指 Offer 64. 求1+2+…+n - 力扣（Leetcode）](https://leetcode.cn/problems/qiu-12n-lcof/description/)
+
+求 `1+2+...+n` ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+
+
+逻辑短路取代if实现递归
+
+```js
+var sumNums = function(n) {
+    let result = 0;
+    function recur(n) {
+        n>1 && recur(n-1);
+        result += n
+    }
+    recur(n);
+    return result;
+};
+```
+
