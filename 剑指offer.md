@@ -641,3 +641,21 @@ var sumNums = function(n) {
 };
 ```
 
+#### [剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 - 力扣（Leetcode）](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/?envType=study-plan-v2&envId=coding-interviews)
+
+注意二叉搜索树的特点
+
+```js
+    const travers = function (root, p, q) {
+        if (!root || root.val > p.val && root.val < q.val || p.val === root.val || q.val === root.val) { return root; }
+        if (p.val > root.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        };
+        if (q.val < root.val) { return lowestCommonAncestor(root.left, p, q); }
+    }
+    if (p.val > q.val) {
+        [p, q] = [q, p]
+    }
+    return travers(root, p, q);
+```
+
