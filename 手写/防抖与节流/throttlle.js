@@ -1,11 +1,11 @@
 // 时间戳 事件会立刻触发 不触发不执行
 function throttle(fn, delay = 500) {
-    let oldTime = Datel.now();
+    let oldTime = 0;
     return function (...args) {
-        let newTime = Datel.now();
+        let newTime = new Date().getTime()
         if (newTime - oldTime >= delay) {
             fn.apply(this, args);
-            oldTime = Datel.now()
+            oldTime = new Date().getTime()
         }
     }
 }
@@ -13,8 +13,8 @@ function throttle(fn, delay = 500) {
 function throttle2(fn, delay = 500) {
     let timer = null;
     return function (...args) {
-        if(!timer) {
-            timer = setTimeOut(()=>{
+        if (!timer) {
+            timer = setTimeOut(() => {
                 fn.apply(this, args);
                 timer = null;
             }, delay);
